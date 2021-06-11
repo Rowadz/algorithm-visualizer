@@ -1,0 +1,4 @@
+export enum ALGOS {
+  SELECTION_SORT = 'SELECTION_SORT',
+  BUBBLE_SORT = 'BUBBLE_SORT',
+}

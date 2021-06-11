@@ -1,13 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { ALGORITHMS } from './enums'
+import { ALGOS } from 'const'
 
-type InitialState = ALGORITHMS | null
+type ALGOState = ALGOS | null
 
 const slice = createSlice({
   name: 'algorithm',
-  initialState: null as InitialState,
+  initialState: null as ALGOState,
   reducers: {
-    selectAlgorithm(_, { payload }: PayloadAction<ALGORITHMS>) {
+    selectAlgorithm(_, { payload }: PayloadAction<ALGOS>) {
       return payload
     },
   },

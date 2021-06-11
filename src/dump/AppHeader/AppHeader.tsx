@@ -9,8 +9,8 @@ const AppHeader: FC = () => {
       as="nav"
       flex="1"
       mb={4}
-      padding=".5rem"
-      bg={theme.colors.red[700]}
+      padding="1rem"
+      bg={theme.colors.purple[700]}
       color="white"
     >
       <Flex align="center">

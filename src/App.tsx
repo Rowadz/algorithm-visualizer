@@ -1,6 +1,6 @@
 import { FC } from 'react'
-import { ChakraProvider, Box, Flex, Heading, Button } from '@chakra-ui/react'
-import { AlgorithmSelector } from 'containers'
+import { ChakraProvider, Box, Flex } from '@chakra-ui/react'
+import { AlgorithmSelector, AlgorithmViz } from 'containers'
 import { AppHeader } from 'dump'
 import theme from './theme'
 
@@ -17,7 +17,9 @@ const App: FC = () => {
         >
           <AlgorithmSelector />
         </Box>
-        <Box h="100%" w="75%" />
+        <Box h="100%" w={['100%', '100%', '75%', '75%']}>
+          <AlgorithmViz />
+        </Box>
       </Flex>
     </ChakraProvider>
   )

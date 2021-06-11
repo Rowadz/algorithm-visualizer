@@ -1,30 +1,45 @@
-import { FC, useCallback } from 'react'
+import { FC, useCallback, memo } from 'react'
 import { Heading, Button } from '@chakra-ui/react'
 import { useAppSelector, useAppDispatch } from 'app/hooks'
+import { ALGOS } from 'const'
+import { selectSelectedAlgo } from 'app/selectors'
+import { startCase } from 'lodash'
 import { selectAlgorithm } from './slice'
-import { ALGORITHMS } from './enums'
+
+const keys = Object.keys(ALGOS)
 
 const AlgorithmSelector: FC = () => {
   const dispatch = useAppDispatch()
-  const selectAlgo = useCallback(() => {
-    dispatch(selectAlgorithm(ALGORITHMS.LEVENSHTEIN_DISTANCE))
-  }, [])
+
+  const selected: ALGOS | null = useAppSelector(selectSelectedAlgo)
+
+  const selectAlgo = useCallback((algo: string) => {
+    dispatch(selectAlgorithm((ALGOS as any)[algo] as ALGOS))
+  }, [dispatch])
 
   return (
-    <Button
-      size="sm"
-      colorScheme="red"
-      borderRadius="full"
-      height="10"
-      onClick={selectAlgo}
-      width="100%"
-      bg="red.700"
-    >
-      <Heading size="sm" w="100%" color="white">
-        levenshtein distance
-      </Heading>
-    </Button>
+    <section>
+      {keys.map((algo: string) => (
+        <Button
+          key={algo}
+          size="sm"
+          disabled={selected === algo}
+          colorScheme="purple"
+          borderRadius="full"
+          height="10"
+          padding="5"
+          m="5"
+          onClick={() => selectAlgo(algo)}
+          width="75%"
+          bg={selected === algo ? 'purple.900' : 'purple.700'}
+        >
+          <Heading size="sm" w="100%" color="white">
+            {startCase(algo)}
+          </Heading>
+        </Button>
+      ))}
+    </section>
   )
 }
 
-export default AlgorithmSelector
+export default memo(AlgorithmSelector)
