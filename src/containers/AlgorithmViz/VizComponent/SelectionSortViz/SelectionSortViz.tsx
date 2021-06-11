@@ -17,7 +17,7 @@ const SelectionSortViz: FC = () => {
     array.map((_, index) => ({
       backgroundColor: i === index || j === index ? '#705E78' : '#ff665a',
       color: '#F2F2F2',
-      width: '100%',
+      width: '10%',
       boxShadow: index === minIdx ? '5px 10px #F3FEB0' : '0px 0px #F3FEB0',
       opacity: i === index ? 0.5 : 1,
       height: 60,
@@ -26,7 +26,7 @@ const SelectionSortViz: FC = () => {
   )
 
   const startAlgo = async () => {
-    await selectionSort(array, setI, setJ, setMinIdx, 500)
+    await selectionSort(array, setI, setJ, setMinIdx, 100)
     setI(null)
     setJ(null)
     setMinIdx(null)
@@ -39,16 +39,10 @@ const SelectionSortViz: FC = () => {
           START!
         </Button>
       </Flex>
-      <Flex fontWeight="bold">
+      <Flex fontWeight="bold" flexWrap="wrap">
         {springs.map((props: any, i) => {
           return (
-            <SelectionSortElement
-              key={i}
-              style={props}
-              onClick={() => {
-                alert(1)
-              }}
-            >
+            <SelectionSortElement key={i} style={props}>
               {array[i]}
             </SelectionSortElement>
           )

@@ -5,20 +5,20 @@ export const selectionSort = async (
   setMinIdx: (n: number) => void,
   stepSpeed: number = 1000
 ) => {
-  let minIdx
+  let minIdx: any
   for (let i = 0; i < arr.length; i++) {
     minIdx = i
     for (let j = i + 1; j < arr.length; j++) {
       await new Promise<void>((res) =>
         setTimeout(() => {
           res()
-          setI(i)
-          setJ(j)
         }, stepSpeed)
       )
+      setI(i)
+      setJ(j)
+      setMinIdx(minIdx)
       if (arr[j] < arr[minIdx]) {
         minIdx = j
-        setMinIdx(minIdx)
       }
     }
     ;[arr[minIdx], arr[i]] = [arr[i], arr[minIdx]]
