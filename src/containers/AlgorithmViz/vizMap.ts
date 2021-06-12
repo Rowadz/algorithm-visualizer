@@ -1,9 +1,10 @@
 import { ALGOS } from 'const'
 import { NamedExoticComponent } from 'react'
-import { SelectionSortViz } from './VizComponent'
+import { SelectionSortViz, BubbleSortViz } from './VizComponent'
 
 const map: Record<string, NamedExoticComponent> = Object.freeze({
   [ALGOS.SELECTION_SORT]: SelectionSortViz,
+  [ALGOS.BUBBLE_SORT]: BubbleSortViz,
 })
 
 export default map

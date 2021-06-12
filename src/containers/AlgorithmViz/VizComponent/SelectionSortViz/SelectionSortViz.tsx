@@ -9,13 +9,13 @@ import {
   Text,
 } from '@chakra-ui/react'
 import { useSprings } from 'react-spring'
-import { random } from 'lodash'
+import { factArr } from 'factories'
 import { selectionSort } from './algo'
 import { DEFAULT_STEP_TIME, AppColors } from 'const'
 import SelectionSortElement from './SelectionSortElement'
 import SelectionSortIterationData from './SelectionSortIterationData'
 
-const array = Array.from({ length: 10 }).map(() => random(0, 100))
+const array = factArr()
 
 const SelectionSortViz: FC = () => {
   const [i, setI] = useState<number | null>(null)
