@@ -1,3 +1,6 @@
+import { store } from 'app/store'
+import { ALGOS } from 'const'
+
 export const selectionSort = async (
   arr: Array<number>,
   setI: (n: number) => void,
@@ -9,11 +12,19 @@ export const selectionSort = async (
   for (let i = 0; i < arr.length; i++) {
     minIdx = i
     for (let j = i + 1; j < arr.length; j++) {
-      await new Promise<void>((res) =>
-        setTimeout(() => {
-          res()
-        }, stepSpeed)
-      )
+      try {
+        await new Promise<void>((res, rej) =>
+          setTimeout(() => {
+            if (store.getState().algorithm !== ALGOS.SELECTION_SORT) {
+              rej()
+            } else {
+              res()
+            }
+          }, stepSpeed)
+        )
+      } catch {
+        throw new Error('Nothing')
+      }
       setI(i)
       setJ(j)
       setMinIdx(minIdx)

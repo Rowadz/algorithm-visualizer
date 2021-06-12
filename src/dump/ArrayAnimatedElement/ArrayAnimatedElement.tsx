@@ -2,11 +2,11 @@ import { animated } from 'react-spring'
 import styled from '@emotion/styled'
 import { Flex } from '@chakra-ui/react'
 
-const InsertionSortElement = styled(animated(Flex))`
+const ArrayAnimatedElement = styled(animated(Flex))`
   cursor: pointer;
 `
 
-InsertionSortElement.defaultProps = {
+ArrayAnimatedElement.defaultProps = {
   justifyContent: 'center',
   alignItems: 'center',
   display: 'flex',
@@ -16,4 +16,4 @@ InsertionSortElement.defaultProps = {
   fontSize: 40,
 }
 
-export default InsertionSortElement
+export default ArrayAnimatedElement
