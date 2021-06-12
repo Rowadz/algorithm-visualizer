@@ -1,4 +1,4 @@
-import { FC, useCallback, memo } from 'react'
+import { FC, memo } from 'react'
 import { Heading, Button } from '@chakra-ui/react'
 import { useAppSelector, useAppDispatch } from 'app/hooks'
 import { ALGOS } from 'const'
@@ -10,12 +10,7 @@ const keys = Object.keys(ALGOS)
 
 const AlgorithmSelector: FC = () => {
   const dispatch = useAppDispatch()
-
   const selected: ALGOS | null = useAppSelector(selectSelectedAlgo)
-
-  const selectAlgo = useCallback((algo: string) => {
-    dispatch(selectAlgorithm((ALGOS as any)[algo] as ALGOS))
-  }, [dispatch])
 
   return (
     <section>
@@ -26,10 +21,12 @@ const AlgorithmSelector: FC = () => {
           disabled={selected === algo}
           colorScheme="purple"
           borderRadius="full"
-          height="10"
-          padding="5"
+          h="10"
+          p="5"
           m="5"
-          onClick={() => selectAlgo(algo)}
+          onClick={() =>
+            dispatch(selectAlgorithm((ALGOS as any)[algo] as ALGOS))
+          }
           width="75%"
           bg={selected === algo ? 'purple.900' : 'purple.700'}
         >
