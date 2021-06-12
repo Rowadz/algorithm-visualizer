@@ -2,11 +2,11 @@ import { animated } from 'react-spring'
 import styled from '@emotion/styled'
 import { Flex } from '@chakra-ui/react'
 
-const AnimatedFlex = styled(animated(Flex))`
+const SelectionSortElement = styled(animated(Flex))`
   cursor: pointer;
 `
 
-AnimatedFlex.defaultProps = {
+SelectionSortElement.defaultProps = {
   justifyContent: 'center',
   alignItems: 'center',
   display: 'flex',
@@ -16,4 +16,4 @@ AnimatedFlex.defaultProps = {
   fontSize: 40,
 }
 
-export default AnimatedFlex
+export default SelectionSortElement

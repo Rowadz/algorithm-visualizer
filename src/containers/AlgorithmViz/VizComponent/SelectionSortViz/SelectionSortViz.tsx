@@ -3,8 +3,6 @@ import {
   Flex,
   Button,
   Box,
-  Kbd,
-  Badge,
   Theme,
   useTheme,
   Divider,
@@ -15,6 +13,7 @@ import { random } from 'lodash'
 import { selectionSort } from './algo'
 import { DEFAULT_STEP_TIME, AppColors } from 'const'
 import SelectionSortElement from './SelectionSortElement'
+import SelectionSortIterationData from './SelectionSortIterationData'
 
 const array = Array.from({ length: 10 }).map(() => random(0, 100))
 
@@ -76,30 +75,24 @@ const SelectionSortViz: FC = () => {
           <Text fontSize="4xl">Iteration data</Text>
         </Flex>
       </Box>
-      <Flex m="1rem" hidden={i === null}>
-        <Box fontSize="xl">
-          <Kbd>i</Kbd> = <Kbd>{i}</Kbd>
-          <Badge m={2} bg={saltBox}>
-            {i === null ? '' : array[i]}
-          </Badge>
-        </Box>
-      </Flex>
-      <Flex m="1rem" hidden={j === null}>
-        <Box fontSize="xl">
-          <Kbd>j</Kbd> = <Kbd>{j}</Kbd>
-          <Badge m={2} bg={saltBox}>
-            {j === null ? '' : array[j]}
-          </Badge>
-        </Box>
-      </Flex>
-      <Flex m="1rem" hidden={minIdx === null}>
-        <Box fontSize="xl">
-          <Kbd>current min index</Kbd> = <Kbd>{minIdx}</Kbd>
-          <Badge m={2} bg={tidal} color="black">
-            {minIdx === null ? '' : array[minIdx]}
-          </Badge>
-        </Box>
-      </Flex>
+      <SelectionSortIterationData
+        index={i}
+        color={saltBox}
+        array={array}
+        text="i"
+      />
+      <SelectionSortIterationData
+        index={j}
+        color={saltBox}
+        array={array}
+        text="j"
+      />
+      <SelectionSortIterationData
+        index={minIdx}
+        color={tidal}
+        array={array}
+        text="current min index"
+      />
     </>
   )
 }
