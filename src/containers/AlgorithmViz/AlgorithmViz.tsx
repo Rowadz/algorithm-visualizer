@@ -1,6 +1,7 @@
 import { memo, FC } from 'react'
-import { ALGOS } from 'const'
+import { ALGOS } from 'app/const'
 import { useAppSelector } from 'app/hooks'
+import { Box } from '@chakra-ui/react'
 import { selectSelectedAlgo } from 'app/selectors'
 import vizMap from './vizMap'
 
@@ -13,9 +14,9 @@ const AlgorithmViz: FC = () => {
   const VIZ = vizMap[selected]
 
   return (
-    <>
+    <Box m="1rem">
       <VIZ />
-    </>
+    </Box>
   )
 }
 

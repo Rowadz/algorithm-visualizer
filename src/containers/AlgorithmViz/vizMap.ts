@@ -1,4 +1,4 @@
-import { ALGOS } from 'const'
+import { ALGOS } from 'app/const'
 import { NamedExoticComponent } from 'react'
 import { SelectionSortViz, BubbleSortViz } from './VizComponent'
 
