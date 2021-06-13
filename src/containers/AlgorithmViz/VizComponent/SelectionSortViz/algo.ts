@@ -1,9 +1,11 @@
+import { DEFAULT_STEP_TIME } from "app/const"
+
 export const selectionSort = async (
   arr: Array<number>,
   setI: (n: number) => void,
   setJ: (n: number) => void,
   setMinIdx: (n: number) => void,
-  stepSpeed: number = 1000
+  stepSpeed: number = DEFAULT_STEP_TIME
 ) => {
   let minIdx: any
   for (let i = 0; i < arr.length; i++) {

@@ -5,7 +5,7 @@ import { factArr } from 'app/factories'
 import { useCustomColors } from 'app/hooks'
 import { selectionSort } from './algo'
 import { DEFAULT_STEP_TIME } from 'app/const'
-import SelectionSortElement from './SelectionSortElement'
+import { ArrayAnimatedElement } from 'dump'
 import SelectionSortIterationData from './SelectionSortIterationData'
 
 const array = factArr()
@@ -54,9 +54,9 @@ const SelectionSortViz: FC = () => {
       <Flex fontWeight="bold" flexWrap="wrap">
         {springs.map((props: any, i) => {
           return (
-            <SelectionSortElement key={i} style={props}>
+            <ArrayAnimatedElement key={i} style={props}>
               {array[i]}
-            </SelectionSortElement>
+            </ArrayAnimatedElement>
           )
         })}
       </Flex>
