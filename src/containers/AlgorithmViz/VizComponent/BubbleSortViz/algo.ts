@@ -4,12 +4,14 @@ export const bubbleSort = async (
   arr: Array<number>,
   setLeft: (n: number) => void,
   setRight: (n: number) => void,
+  setArray: (arr: Array<number>) => void,
   stepSpeed: number = DEFAULT_STEP_TIME
 ) => {
-  for (let i = 0; i < arr.length; i++) {
-    for (let j = 0; j < arr.length - 1 - i; j++) {
-      const right = arr[j + 1]
-      const left = arr[j]
+  const copy = [...arr]
+  for (let i = 0; i < copy.length; i++) {
+    for (let j = 0; j < copy.length - 1 - i; j++) {
+      const right = copy[j + 1]
+      const left = copy[j]
       await new Promise<void>((res) => {
         setTimeout(() => {
           res()
@@ -18,11 +20,11 @@ export const bubbleSort = async (
       setLeft(j)
       setRight(j + 1)
       if (left > right) {
-        const x = arr[j]
-        arr[j] = arr[j + 1]
-        arr[j + 1] = x
+        const x = copy[j]
+        copy[j] = copy[j + 1]
+        copy[j + 1] = x
       }
+      setArray(copy)
     }
   }
-  return arr
 }

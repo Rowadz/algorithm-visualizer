@@ -4,13 +4,11 @@ import { useSprings } from 'react-spring'
 import { factArr } from 'app/factories'
 import { useCustomColors } from 'app/hooks'
 import { selectionSort } from './algo'
-import { DEFAULT_STEP_TIME } from 'app/const'
 import { ArrayAnimatedElement } from 'dump'
 import SelectionSortIterationData from './SelectionSortIterationData'
 
-const array = factArr()
-
 const SelectionSortViz: FC = () => {
+  const [array, setArray] = useState<Array<number>>(factArr())
   const [i, setI] = useState<number | null>(null)
   const [j, setJ] = useState<number | null>(null)
   const [minIdx, setMinIdx] = useState<number | null>(null)
@@ -32,7 +30,7 @@ const SelectionSortViz: FC = () => {
 
   const startAlgo = async () => {
     setStarted(true)
-    await selectionSort(array, setI, setJ, setMinIdx, DEFAULT_STEP_TIME)
+    await selectionSort(array, setI, setJ, setMinIdx, setArray)
     setI(null)
     setJ(null)
     setMinIdx(null)

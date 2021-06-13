@@ -6,9 +6,8 @@ import { factArr } from 'app/factories'
 import { ArrayAnimatedElement } from 'dump'
 import { bubbleSort } from './algo'
 
-const array = factArr()
-
 const BubbleSortViz: FC = () => {
+  const [array, setArray] = useState<Array<number>>(factArr())
   const [leftIndex, setLeft] = useState<number | null>(null)
   const [rightIndex, setRight] = useState<number | null>(null)
   const [started, setStarted] = useState<boolean>(false)
@@ -33,7 +32,7 @@ const BubbleSortViz: FC = () => {
 
   const startAlgo = async () => {
     setStarted(true)
-    await bubbleSort(array, setLeft, setRight)
+    await bubbleSort(array, setLeft, setRight, setArray)
     setStarted(false)
     setLeft(null)
     setRight(null)
