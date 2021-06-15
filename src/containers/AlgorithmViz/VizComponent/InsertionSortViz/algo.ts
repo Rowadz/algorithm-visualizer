@@ -33,9 +33,9 @@ export const insertionSort = async (
       arr[j + 1] = arr[j]
       j--
       setJ(j)
+      arr[j + 1] = key
+      setKey(j + 1)
     }
-    arr[j + 1] = key
-    setKey(j + 1)
   }
   return arr
 }
