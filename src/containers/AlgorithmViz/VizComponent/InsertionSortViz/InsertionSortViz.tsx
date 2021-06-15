@@ -20,7 +20,7 @@ const array = Array.from({ length: 10 }).map(() => random(0, 100))
 const InsertionSortViz: FC = () => {
   const [i, setI] = useState<number | null>(null)
   const [j, setJ] = useState<number | null>(null)
-  const [minIdx, setMinIdx] = useState<number | null>(null)
+  const [keyIdx, setKeyInx] = useState<number | null>(null)
   const [started, setStarted] = useState<boolean>(false)
 
   const { colors }: Theme = useTheme()
@@ -32,7 +32,7 @@ const InsertionSortViz: FC = () => {
       backgroundColor: i === index || j === index ? saltBox : persimmon,
       color: '#F2F2F2',
       width: '10%',
-      boxShadow: index === minIdx ? `5px 10px ${tidal}` : `0px 0px ${tidal}`,
+      boxShadow: index === keyIdx ? `5px 10px ${tidal}` : `0px 0px ${tidal}`,
       opacity: i === index ? 0.5 : 1,
       height: 60,
       from: { opacity: 0, height: 120 }
@@ -42,14 +42,14 @@ const InsertionSortViz: FC = () => {
   const startAlgo = async () => {
     setStarted(true)
     try {
-      await insertionSort(array, setI, setJ, setMinIdx, DEFAULT_STEP_TIME)
+      await insertionSort(array, setI, setJ, setKeyInx, DEFAULT_STEP_TIME)
     } catch (error) {
       // Display error message
     }
     if (store.getState().algorithm === ALGOS.INSERTION_SORT) {
       setI(null)
       setJ(null)
-      setMinIdx(null)
+      setKeyInx(null)
       setStarted(false)
     }
   }
@@ -75,7 +75,7 @@ const InsertionSortViz: FC = () => {
           )
         })}
       </Flex>
-      <Box hidden={i === null && j === null && minIdx === null}>
+      <Box hidden={i === null && j === null && keyIdx === null}>
         <Divider />
         <Flex>
           <Text fontSize='4xl'>Iteration data</Text>
@@ -84,10 +84,10 @@ const InsertionSortViz: FC = () => {
       <ArrayIterationData index={i} color={saltBox} array={array} text='i' />
       <ArrayIterationData index={j} color={saltBox} array={array} text='j' />
       <ArrayIterationData
-        index={minIdx}
+        index={keyIdx}
         color={tidal}
         array={array}
-        text='current min index'
+        text='Current Key Index'
       />
     </>
   )
