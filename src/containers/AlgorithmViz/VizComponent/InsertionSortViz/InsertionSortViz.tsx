@@ -11,7 +11,7 @@ import {
 import { useSprings } from 'react-spring'
 import { random } from 'lodash'
 import { insertionSort } from './algo'
-import { DEFAULT_STEP_TIME, AppColors, ALGOS } from 'const'
+import { DEFAULT_STEP_TIME, AppColors, ALGOS } from 'app/const'
 import { ArrayAnimatedElement, ArrayIterationData } from 'dump'
 import { store } from 'app/store'
 

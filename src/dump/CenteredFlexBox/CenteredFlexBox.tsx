@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import styled from '@emotion/styled'
 import { Flex } from '@chakra-ui/react'
 
@@ -9,4 +10,4 @@ CenteredFlexBox.defaultProps = {
   display: 'flex',
 }
 
-export default CenteredFlexBox
+export default memo(CenteredFlexBox)

@@ -1,5 +1,5 @@
 import { store } from 'app/store'
-import { ALGOS } from 'const'
+import { ALGOS } from 'app/const'
 
 export const insertionSort = async (
   arr: Array<number>,

@@ -1,7 +1,7 @@
 import { FC, memo } from 'react'
 import { Heading, Button } from '@chakra-ui/react'
 import { useAppSelector, useAppDispatch } from 'app/hooks'
-import { ALGOS } from 'const'
+import { ALGOS } from 'app/const'
 import { selectSelectedAlgo } from 'app/selectors'
 import { startCase } from 'lodash'
 import { selectAlgorithm } from './slice'

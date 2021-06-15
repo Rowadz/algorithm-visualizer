@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { ALGOS } from 'const'
+import { ALGOS } from 'app/const'
 
 type ALGOState = ALGOS | null
 

@@ -1,31 +1,21 @@
 import { memo, FC, useState } from 'react'
-import {
-  Flex,
-  Button,
-  Box,
-  Theme,
-  useTheme,
-  Divider,
-  Text
-} from '@chakra-ui/react'
+import { Flex, Button, Box, Divider, Text } from '@chakra-ui/react'
 import { useSprings } from 'react-spring'
-import { random } from 'lodash'
+import { factArr } from 'app/factories'
+import { useCustomColors } from 'app/hooks'
 import { selectionSort } from './algo'
-import { DEFAULT_STEP_TIME, AppColors, ALGOS } from 'const'
+import { DEFAULT_STEP_TIME, AppColors, ALGOS } from 'app/const'
 import { ArrayAnimatedElement, ArrayIterationData } from 'dump'
 
 import { store } from 'app/store'
 
-const array = Array.from({ length: 10 }).map(() => random(0, 100))
-
 const SelectionSortViz: FC = () => {
+  const [array, setArray] = useState<Array<number>>(factArr())
   const [i, setI] = useState<number | null>(null)
   const [j, setJ] = useState<number | null>(null)
   const [minIdx, setMinIdx] = useState<number | null>(null)
   const [started, setStarted] = useState<boolean>(false)
-
-  const { colors }: Theme = useTheme()
-  const { saltBox, persimmon, tidal } = colors as unknown as AppColors
+  const { saltBox, persimmon, tidal } = useCustomColors()
 
   const springs = useSprings(
     array.length,
@@ -43,7 +33,7 @@ const SelectionSortViz: FC = () => {
   const startAlgo = async () => {
     setStarted(true)
     try {
-      await selectionSort(array, setI, setJ, setMinIdx, DEFAULT_STEP_TIME)
+      await selectionSort(array, setI, setJ, setMinIdx,setArray, DEFAULT_STEP_TIME)
     } catch (error) {
      // Display error message
     }
