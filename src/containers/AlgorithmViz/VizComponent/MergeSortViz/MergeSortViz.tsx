@@ -11,7 +11,6 @@ const renderForeignObjectNode = ({
   fillColor,
   foreignObjectProps,
 }: any) => {
-  // console.log({ nodeDatum })
   return (
     <g>
       <circle r={15} style={{ fill: fillColor }}></circle>
@@ -38,13 +37,11 @@ const MergeSortViz = () => {
     setStarted(false)
   }
 
-  // console.log({ tree })
-
   const { saltBox } = useCustomColors()
   const foreignObjectProps = { width: 500, height: 200, x: 20 }
 
   return (
-    <div style={{ width: '50rem', height: '100vh' }}>
+    <div style={{ width: '100vw', height: '100vh' }}>
       <Button onClick={startAlgo} isLoading={started}>
         START!
       </Button>

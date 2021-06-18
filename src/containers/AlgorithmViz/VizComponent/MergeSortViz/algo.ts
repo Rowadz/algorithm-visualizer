@@ -23,17 +23,6 @@ export const mergeSort = async (
     }, stepSpeed)
   })
 
-  // if (leftTree && mid < 5) {
-  //   console.group(`mid: ${mid}`)
-  //   console.table({
-  //     leftArray,
-  //     rightArray,
-  //     mid,
-  //     array,
-  //     right: array.slice(0, mid),
-  //   })
-  // }
-
   mapLvls(
     array.slice(0, mid),
     array.slice(mid),
@@ -55,6 +44,7 @@ export const mergeSort = async (
     false,
     true
   )
+
   return merge(sortedLeft, sortedRight)
 }
 
@@ -92,8 +82,7 @@ const mapLvls = (
   leftTree: boolean = true,
   rightTree: boolean = false
 ) => {
-  console.log({ leftTree, rightTree })
-  if (leftTree && !rightTree) {
+  if (leftTree) {
     if (depthLevel === 1) {
       setTree((prev: any) => ({
         ...prev,
@@ -121,9 +110,17 @@ const mapLvls = (
             {
               children: [left],
             },
+            {
+              children: [leftRight],
+            },
           ] = prev.children
-
-          left.children.push(
+          let ref = null
+          if (left.children.length === 0) {
+            ref = left.children
+          } else {
+            ref = leftRight.children
+          }
+          ref.push(
             ...[
               { name: `[${leftArray.toString()}]`, children: [] },
               { name: `[${rightArray.toString()}]`, children: [] },
@@ -132,7 +129,7 @@ const mapLvls = (
         })
       )
     }
-  } else if (rightTree && !leftTree) {
+  } else if (rightTree) {
     if (depthLevel === 2) {
       setTree(
         produce((prev: any) => {
@@ -148,9 +145,25 @@ const mapLvls = (
     } else if (depthLevel === 3) {
       setTree(
         produce((prev: any) => {
-          const [, right] = prev.children
-          console.log({ right: original(right) })
-          right.children.push(
+          // if the root->left->right is empty then add to it
+          // else if root->right children is emtype the add to it
+          // else add to root->right->right
+          const [
+            {
+              children: [, leftRight],
+            },
+            right,
+          ] = prev.children
+          let ref = null
+          if (leftRight.children.length === 0) {
+            ref = leftRight.children
+          } else if (right.children === 0) {
+            ref = right.children
+          } else {
+            const [, rightOfRight] = right.children
+            ref = rightOfRight.children
+          }
+          ref.push(
             ...[
               { name: `[${leftArray.toString()}]`, children: [] },
               { name: `[${rightArray.toString()}]`, children: [] },
