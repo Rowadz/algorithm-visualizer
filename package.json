@@ -1,5 +1,6 @@
 {
   "name": "algorithm-visualizer",
+  "homepage": "https://mohammedal-rowad.github.io/algorithm-visualizer/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
