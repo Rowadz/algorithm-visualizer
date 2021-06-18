@@ -171,6 +171,26 @@ const mapLvls = (
           )
         })
       )
+    }else if (depthLevel === 4) {
+      // will always be root->left->right->right
+      // or root->right->right->right
+      setTree(produce((prev: any) => {
+        const [{children: [, {children: [, leftRight]}]}] = prev.children
+        let ref = null
+        if (leftRight.children.length === 0) {
+          ref = leftRight.children
+        } else {
+          const [, {children: [, {children: [, rightRight]}]} ] = prev.children
+          ref = rightRight.children
+        }
+        
+        ref.push(
+          ...[
+            { name: `[${leftArray.toString()}]`, children: [] },
+            { name: `[${rightArray.toString()}]`, children: [] },
+          ]
+        )
+      }))
     }
   }
 }
