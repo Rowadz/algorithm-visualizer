@@ -1,5 +1,6 @@
 import { FC, memo } from 'react'
-import { Flex, Heading, useTheme, Theme } from '@chakra-ui/react'
+import { Flex, Heading, useTheme, Theme, IconButton } from '@chakra-ui/react'
+import { SunIcon } from '@chakra-ui/icons'
 
 const AppHeader: FC = () => {
   const theme: Theme = useTheme()
@@ -16,6 +17,13 @@ const AppHeader: FC = () => {
       <Flex align="center">
         <Heading size="sm">TODO</Heading>
       </Flex>
+      <Flex flex={1} />
+      <IconButton
+        variant="outline"
+        aria-label="Theme changer"
+        fontSize="20px"
+        icon={<SunIcon />}
+      />
     </Flex>
   )
 }

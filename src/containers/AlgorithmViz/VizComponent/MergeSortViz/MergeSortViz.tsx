@@ -10,38 +10,44 @@ const renderForeignObjectNode = ({
   nodeDatum,
   fillColor,
   foreignObjectProps,
-}: any) => (
-  <g>
-    <circle r={15} style={{ fill: fillColor }}></circle>
-    <foreignObject {...foreignObjectProps}>
-      <div style={{ border: '1px solid black', width: 200 }}>
-        <h3 style={{ textAlign: 'center' }}>
-          <pre>{JSON.stringify(nodeDatum.name, null, 4)}</pre>
-        </h3>
-      </div>
-    </foreignObject>
-  </g>
-)
+}: any) => {
+  // console.log({ nodeDatum })
+  return (
+    <g>
+      <circle r={15} style={{ fill: fillColor }}></circle>
+      <foreignObject {...foreignObjectProps}>
+        <div style={{ width: 90 }}>
+          <h3 style={{ textAlign: 'center' }}>{nodeDatum.name}</h3>
+        </div>
+      </foreignObject>
+    </g>
+  )
+}
 
 const MergeSortViz = () => {
   const [array, setArray] = useState<Array<number>>(factArr(10))
+  const [started, setStarted] = useState<boolean>(false)
   const [tree, setTree] = useState({
     name: `[${array.toString()}]`,
     children: [],
   })
 
   const startAlgo = async () => {
+    setStarted(true)
     await mergeSort(array, setTree)
+    setStarted(false)
   }
 
-  console.log({ tree })
+  // console.log({ tree })
 
   const { saltBox } = useCustomColors()
   const foreignObjectProps = { width: 500, height: 200, x: 20 }
 
   return (
     <div style={{ width: '50rem', height: '100vh' }}>
-      <Button onClick={startAlgo}>START!</Button>
+      <Button onClick={startAlgo} isLoading={started}>
+        START!
+      </Button>
       <Tree
         translate={{ x: window.innerWidth / 4, y: 20 }}
         data={tree}
