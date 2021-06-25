@@ -37,6 +37,21 @@ export const mergeSort = async (
     setTree,
     depthLevel + 1
   )
+
+  await new Promise<void>((res) => {
+    setTimeout(() => {
+      res()
+    }, stepSpeed)
+  })
+
+  reduceLevels({
+    leftArray: sortedLeft,
+    setTree,
+    depthLevel,
+    leftTree,
+    rightTree,
+  })
+
   const sortedRight: Array<number> = await mergeSort(
     rightArray,
     setTree,
@@ -44,6 +59,14 @@ export const mergeSort = async (
     false,
     true
   )
+
+  reduceLevels({
+    rightArray: sortedRight,
+    setTree,
+    depthLevel,
+    leftTree,
+    rightTree,
+  })
 
   return merge(sortedLeft, sortedRight)
 }
@@ -108,17 +131,17 @@ const mapLvls = (
         produce((prev: any) => {
           const [
             {
-              children: [left],
+              children: [leftLeft],
             },
             {
-              children: [leftRight],
+              children: [rightLeft],
             },
           ] = prev.children
           let ref = null
-          if (left.children.length === 0) {
-            ref = left.children
+          if (leftLeft.children.length === 0 && !leftLeft.sorted) {
+            ref = leftLeft.children
           } else {
-            ref = leftRight.children
+            ref = rightLeft.children
           }
           ref.push(
             ...[
@@ -155,7 +178,7 @@ const mapLvls = (
             right,
           ] = prev.children
           let ref = null
-          if (leftRight.children.length === 0) {
+          if (leftRight?.children.length === 0 && !leftRight.sorted) {
             ref = leftRight.children
           } else if (right.children === 0) {
             ref = right.children
@@ -171,26 +194,114 @@ const mapLvls = (
           )
         })
       )
-    }else if (depthLevel === 4) {
+    } else if (depthLevel === 4) {
       // will always be root->left->right->right
       // or root->right->right->right
-      setTree(produce((prev: any) => {
-        const [{children: [, {children: [, leftRight]}]}] = prev.children
-        let ref = null
-        if (leftRight.children.length === 0) {
-          ref = leftRight.children
-        } else {
-          const [, {children: [, {children: [, rightRight]}]} ] = prev.children
-          ref = rightRight.children
-        }
-        
-        ref.push(
-          ...[
-            { name: `[${leftArray.toString()}]`, children: [] },
-            { name: `[${rightArray.toString()}]`, children: [] },
-          ]
-        )
-      }))
+      setTree(
+        produce((prev: any) => {
+          const [
+            {
+              children: [
+                ,
+                {
+                  children: [, leftRight],
+                },
+              ],
+            },
+          ] = prev.children
+          let ref = null
+          if (leftRight?.children.length === 0 && !leftRight.sorted) {
+            ref = leftRight.children
+          } else {
+            const [
+              ,
+              {
+                children: [
+                  ,
+                  {
+                    children: [, rightRight],
+                  },
+                ],
+              },
+            ] = prev.children
+            ref = rightRight.children
+          }
+
+          ref.push(
+            ...[
+              { name: `[${leftArray.toString()}]`, children: [] },
+              { name: `[${rightArray.toString()}]`, children: [] },
+            ]
+          )
+        })
+      )
     }
   }
+}
+
+interface ReduceLevelsArgs {
+  leftArray?: Array<number>
+  rightArray?: Array<number>
+  setTree: (obj: any) => void
+  depthLevel?: number
+  leftTree?: boolean
+  rightTree?: boolean
+}
+
+const reduceLevels = ({
+  leftArray,
+  rightArray,
+  setTree,
+  depthLevel = 1,
+  leftTree = true,
+  rightTree = false,
+}: ReduceLevelsArgs) => {
+  if (leftTree) {
+    if (depthLevel === 2) {
+      if (leftArray) {
+        setTree(
+          produce((prev: any) => {
+            const [leftNode] = prev.children
+
+            leftNode.children = [
+              {
+                name: `[${leftArray?.toString()}]`,
+                children: [],
+                sorted: true,
+              },
+              leftNode.children[1],
+            ]
+          })
+        )
+      } else {
+        setTree(
+          produce((prev: any) => {
+            const [leftNode] = prev.children
+
+            leftNode.children = [
+              leftNode.children[0],
+              {
+                name: `[${rightArray?.toString()}]`,
+                children: [],
+                sorted: true,
+              },
+            ]
+          })
+        )
+      }
+    }
+  } else {
+    // if (depthLevel === 2) {
+    //   setTree(
+    //     produce((prev: any) => {
+    //       const [, rightNode] = prev.children
+    //       rightNode.children = [
+    //         { name: `[${leftArray?.toString()}]`, children: [], sorted: true },
+    //         rightNode.children[1],
+    //       ]
+    //     })
+    //   )
+    // }
+  }
+  // console.log(leftArray, rightArray, { depthLevel, leftTree, rightTree })
 }

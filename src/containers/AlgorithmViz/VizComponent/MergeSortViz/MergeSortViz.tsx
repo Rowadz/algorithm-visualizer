@@ -13,7 +13,7 @@ const renderForeignObjectNode = ({
 }: any) => {
   return (
     <g>
-      <circle r={15} style={{ fill: fillColor }}></circle>
+      <circle r={15} style={{ fill: nodeDatum.color || fillColor }}></circle>
       <foreignObject {...foreignObjectProps}>
         <div style={{ width: 90 }}>
           <h3 style={{ textAlign: 'center' }}>{nodeDatum.name}</h3>
