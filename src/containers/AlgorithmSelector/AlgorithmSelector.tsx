@@ -1,5 +1,5 @@
 import { FC, memo } from 'react'
-import { Heading, Button } from '@chakra-ui/react'
+import { Text, Button } from '@chakra-ui/react'
 import { useAppSelector, useAppDispatch } from 'app/hooks'
 import { ALGOS } from 'app/const'
 import { selectSelectedAlgo } from 'app/selectors'
@@ -21,18 +21,20 @@ const AlgorithmSelector: FC = () => {
           disabled={selected === algo}
           colorScheme="purple"
           borderRadius="full"
-          h="10"
-          p="5"
-          m="5"
+          w={['25%', '25%', '25%', '25%']}
+          h={['auto', 10, 10, 10]}
+          p={[0, 10, 10, 10]}
+          m={[1, 5, 5, 5]}
+          textOverflow="clip"
+          whiteSpace="break-spaces"
           onClick={() =>
             dispatch(selectAlgorithm((ALGOS as any)[algo] as ALGOS))
           }
-          width="75%"
           bg={selected === algo ? 'purple.900' : 'purple.700'}
         >
-          <Heading size="sm" w="100%" color="white">
+          <Text fontSize="xs" color="white" textOverflow="clip">
             {startCase(algo)}
-          </Heading>
+          </Text>
         </Button>
       ))}
     </section>

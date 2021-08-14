@@ -9,7 +9,11 @@ const App: FC = () => {
     <ChakraProvider theme={theme}>
       <AppHeader />
       <Flex height="100vh" flexDir={['column', 'column', 'row', 'row']}>
-        <Box h="100%" w={['100%', '100%', '25%', '25%']} p=".5rem">
+        <Box
+          h={['auto', 'auto', '25%', '25%']}
+          w={['100%', '100%', '25%', '25%']}
+          p=".5rem"
+        >
           <AlgorithmSelector />
         </Box>
         <Box h="100%" w={['100%', '100%', '75%', '75%']}>
