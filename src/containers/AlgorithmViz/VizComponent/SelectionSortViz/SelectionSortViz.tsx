@@ -4,7 +4,7 @@ import { useSprings } from 'react-spring'
 import { factArr } from 'app/factories'
 import { useCustomColors } from 'app/hooks'
 import { selectionSort } from './algo'
-import { DEFAULT_STEP_TIME, AppColors, ALGOS } from 'app/const'
+import { DEFAULT_STEP_TIME, ALGOS } from 'app/const'
 import { ArrayAnimatedElement, ArrayIterationData } from 'dump'
 
 import { store } from 'app/store'
@@ -26,16 +26,23 @@ const SelectionSortViz: FC = () => {
       boxShadow: index === minIdx ? `5px 10px ${tidal}` : `0px 0px ${tidal}`,
       opacity: i === index ? 0.5 : 1,
       height: 60,
-      from: { opacity: 0, height: 120 }
+      from: { opacity: 0, height: 120 },
     }))
   )
 
   const startAlgo = async () => {
     setStarted(true)
     try {
-      await selectionSort(array, setI, setJ, setMinIdx,setArray, DEFAULT_STEP_TIME)
+      await selectionSort(
+        array,
+        setI,
+        setJ,
+        setMinIdx,
+        setArray,
+        DEFAULT_STEP_TIME
+      )
     } catch (error) {
-     // Display error message
+      // Display error message
     }
     if (store.getState().algorithm === ALGOS.SELECTION_SORT) {
       setI(null)
@@ -49,7 +56,7 @@ const SelectionSortViz: FC = () => {
     <>
       <Flex>
         <Button
-          m='1rem'
+          m="1rem"
           onClick={startAlgo}
           disabled={started}
           isLoading={started}
@@ -57,7 +64,7 @@ const SelectionSortViz: FC = () => {
           START!
         </Button>
       </Flex>
-      <Flex fontWeight='bold' flexWrap='wrap'>
+      <Flex fontWeight="bold" flexWrap="wrap">
         {springs.map((props: any, i) => {
           return (
             <ArrayAnimatedElement key={i} style={props}>
@@ -69,16 +76,16 @@ const SelectionSortViz: FC = () => {
       <Box hidden={i === null && j === null && minIdx === null}>
         <Divider />
         <Flex>
-          <Text fontSize='4xl'>Iteration data</Text>
+          <Text fontSize="4xl">Iteration data</Text>
         </Flex>
       </Box>
-      <ArrayIterationData index={i} color={saltBox} array={array} text='i' />
-      <ArrayIterationData index={j} color={saltBox} array={array} text='j' />
+      <ArrayIterationData index={i} color={saltBox} array={array} text="i" />
+      <ArrayIterationData index={j} color={saltBox} array={array} text="j" />
       <ArrayIterationData
         index={minIdx}
         color={tidal}
         array={array}
-        text='current min index'
+        text="current min index"
       />
     </>
   )

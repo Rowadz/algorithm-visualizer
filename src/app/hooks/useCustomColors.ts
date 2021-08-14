@@ -3,6 +3,6 @@ import { AppColors } from 'app/const'
 
 export const useCustomColors = () => {
   const { colors }: Theme = useTheme()
-  const { saltBox, persimmon, tidal } = colors as unknown as AppColors
-  return { saltBox, persimmon, tidal }
+  const { saltBox, persimmon, tidal, mulberry } = colors as unknown as AppColors
+  return { saltBox, persimmon, tidal, mulberry }
 }

@@ -1,6 +1,5 @@
 * {
-  font-family: cursive, source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: sans-serif;
 }
 
 body,
@@ -13,10 +12,10 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
+/* code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-}
+} */
 #root {
   height: 100%;
 }
