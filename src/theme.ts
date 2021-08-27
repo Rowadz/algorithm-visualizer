@@ -13,6 +13,7 @@ const theme: Theme = extendTheme({
     mulberry: '#BF4594',
     persimmon: '#FF665A',
     tidal: '#F3FEB0',
+    mediumRedViolet: '#C82C8D',
   } as AppColors,
 })
 
