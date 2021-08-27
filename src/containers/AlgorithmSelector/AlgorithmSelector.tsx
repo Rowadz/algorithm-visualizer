@@ -27,7 +27,7 @@ const AlgorithmSelector: FC = () => {
           borderColor={mediumRedViolet}
           borderTopStyle="solid"
           w={['25%', '25%', '25%', '25%']}
-          h={['auto', 10, 10, 10]}
+          h={10}
           p={[0, 10, 10, 10]}
           m={[1, 5, 5, 5]}
           textOverflow="clip"
@@ -38,7 +38,7 @@ const AlgorithmSelector: FC = () => {
           bg={selected === algo ? 'purple.900' : 'purple.700'}
         >
           <Text fontSize="xs" color="white" textOverflow="clip">
-            {startCase(algo)}
+            {startCase(algo.toLowerCase())}
           </Text>
         </Button>
       ))}

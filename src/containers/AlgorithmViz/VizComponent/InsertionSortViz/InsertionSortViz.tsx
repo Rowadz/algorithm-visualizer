@@ -6,12 +6,13 @@ import {
   Theme,
   useTheme,
   Divider,
-  Text
+  Text,
 } from '@chakra-ui/react'
 import { useSprings } from 'react-spring'
 import { random } from 'lodash'
 import { insertionSort } from './algo'
 import { DEFAULT_STEP_TIME, AppColors, ALGOS } from 'app/const'
+import { useSpringBoxHeight } from 'app/hooks'
 import { ArrayAnimatedElement, ArrayIterationData } from 'dump'
 import { store } from 'app/store'
 
@@ -22,6 +23,7 @@ const InsertionSortViz: FC = () => {
   const [j, setJ] = useState<number | null>(null)
   const [keyIdx, setKeyInx] = useState<number | null>(null)
   const [started, setStarted] = useState<boolean>(false)
+  const boxHeight: number = useSpringBoxHeight()
 
   const { colors }: Theme = useTheme()
   const { saltBox, persimmon, tidal } = colors as unknown as AppColors
@@ -34,8 +36,8 @@ const InsertionSortViz: FC = () => {
       width: '10%',
       boxShadow: index === keyIdx ? `5px 10px ${tidal}` : `0px 0px ${tidal}`,
       opacity: i === index ? 0.5 : 1,
-      height: 60,
-      from: { opacity: 0, height: 120 }
+      height: boxHeight,
+      from: { opacity: 0, height: 120 },
     }))
   )
 
@@ -58,7 +60,7 @@ const InsertionSortViz: FC = () => {
     <>
       <Flex>
         <Button
-          m='1rem'
+          m="1rem"
           onClick={startAlgo}
           disabled={started}
           isLoading={started}
@@ -66,7 +68,7 @@ const InsertionSortViz: FC = () => {
           START!
         </Button>
       </Flex>
-      <Flex fontWeight='bold' flexWrap='wrap'>
+      <Flex fontWeight="bold" flexWrap="wrap">
         {springs.map((props: any, i) => {
           return (
             <ArrayAnimatedElement key={i} style={props}>
@@ -78,16 +80,16 @@ const InsertionSortViz: FC = () => {
       <Box hidden={i === null && j === null && keyIdx === null}>
         <Divider />
         <Flex>
-          <Text fontSize='4xl'>Iteration data</Text>
+          <Text fontSize="4xl">Iteration data</Text>
         </Flex>
       </Box>
-      <ArrayIterationData index={i} color={saltBox} array={array} text='i' />
-      <ArrayIterationData index={j} color={saltBox} array={array} text='j' />
+      <ArrayIterationData index={i} color={saltBox} array={array} text="i" />
+      <ArrayIterationData index={j} color={saltBox} array={array} text="j" />
       <ArrayIterationData
         index={keyIdx}
         color={tidal}
         array={array}
-        text='Current Key Index'
+        text="Current Key Index"
       />
     </>
   )

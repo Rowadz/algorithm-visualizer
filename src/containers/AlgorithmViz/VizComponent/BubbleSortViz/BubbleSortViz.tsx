@@ -1,7 +1,7 @@
 import { memo, FC, useState } from 'react'
 import { useSprings } from 'react-spring'
 import { Flex, Button } from '@chakra-ui/react'
-import { useCustomColors } from 'app/hooks'
+import { useCustomColors, useSpringBoxHeight } from 'app/hooks'
 import { factArr } from 'app/factories'
 import { ArrayAnimatedElement } from 'dump'
 import { bubbleSort } from './algo'
@@ -12,6 +12,7 @@ const BubbleSortViz: FC = () => {
   const [rightIndex, setRight] = useState<number | null>(null)
   const [started, setStarted] = useState<boolean>(false)
   const { saltBox, persimmon, tidal } = useCustomColors()
+  const boxHeight = useSpringBoxHeight()
 
   const springs = useSprings(
     array.length,
@@ -25,7 +26,7 @@ const BubbleSortViz: FC = () => {
           ? `5px 10px ${tidal}`
           : `0px 0px ${tidal}`,
       opacity: 1,
-      height: 60,
+      height: boxHeight,
       from: { opacity: 0, height: 120 },
     }))
   )

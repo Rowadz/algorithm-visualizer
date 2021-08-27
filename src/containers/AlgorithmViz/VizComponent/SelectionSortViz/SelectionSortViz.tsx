@@ -2,7 +2,7 @@ import { memo, FC, useState } from 'react'
 import { Flex, Button, Box, Divider, Text } from '@chakra-ui/react'
 import { useSprings } from 'react-spring'
 import { factArr } from 'app/factories'
-import { useCustomColors } from 'app/hooks'
+import { useCustomColors, useSpringBoxHeight } from 'app/hooks'
 import { selectionSort } from './algo'
 import { DEFAULT_STEP_TIME, ALGOS } from 'app/const'
 import { ArrayAnimatedElement, ArrayIterationData } from 'dump'
@@ -16,6 +16,7 @@ const SelectionSortViz: FC = () => {
   const [minIdx, setMinIdx] = useState<number | null>(null)
   const [started, setStarted] = useState<boolean>(false)
   const { saltBox, persimmon, tidal } = useCustomColors()
+  const boxHeight: number = useSpringBoxHeight()
 
   const springs = useSprings(
     array.length,
@@ -25,7 +26,7 @@ const SelectionSortViz: FC = () => {
       width: '10%',
       boxShadow: index === minIdx ? `5px 10px ${tidal}` : `0px 0px ${tidal}`,
       opacity: i === index ? 0.5 : 1,
-      height: 60,
+      height: boxHeight,
       from: { opacity: 0, height: 120 },
     }))
   )
