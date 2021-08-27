@@ -1,14 +1,25 @@
 import { memo, FC } from 'react'
-import { Flex, Button } from '@chakra-ui/react'
+import { Flex, Button, Text, Badge } from '@chakra-ui/react'
+import { ModeSelector } from './components'
 
 const QuickSortViz: FC = () => {
   return (
     <>
       <Flex>
-        <Button m="1rem">START!</Button>
+        <Button mt="1rem" mb="1rem">
+          START!
+        </Button>
       </Flex>
       <Flex fontWeight="bold" flexWrap="wrap">
-        TODO
+        <Text fontSize="xs">
+          Like <Badge>Merge Sort</Badge>, QuickSort is a Divide and Conquer
+          algorithm. It picks an element as pivot and partitions the given array
+          around the picked pivot. There are many different versions of
+          quickSort that pick pivot in different ways.
+        </Text>
+      </Flex>
+      <Flex mt="1rem">
+        <ModeSelector />
       </Flex>
     </>
   )
