@@ -1,5 +1,5 @@
 import { memo, FC } from 'react'
-import { Flex, Button, Text, Badge } from '@chakra-ui/react'
+import { Flex, Button, Text, Badge, Box } from '@chakra-ui/react'
 import { ModeSelector } from './components'
 
 const QuickSortViz: FC = () => {
@@ -18,9 +18,9 @@ const QuickSortViz: FC = () => {
           quickSort that pick pivot in different ways.
         </Text>
       </Flex>
-      <Flex mt="1rem">
+      <Box mt="1rem">
         <ModeSelector />
-      </Flex>
+      </Box>
     </>
   )
 }
