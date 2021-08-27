@@ -27,7 +27,7 @@ const BubbleSortViz: FC = () => {
           : `0px 0px ${tidal}`,
       opacity: 1,
       height: boxHeight,
-      from: { opacity: 0, height: 120 },
+      from: { opacity: 0, height: 12 },
     }))
   )
 
