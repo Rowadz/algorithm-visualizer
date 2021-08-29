@@ -1,11 +1,9 @@
 import { NamedExoticComponent } from 'react'
 import { QuickSortModes } from './types'
-import {
-  QuickSortFirstMode,
-  QuickSortLastMode,
-  QuickSortRandomMode,
-  QuickSortMedianMode,
-} from '.'
+import { QuickSortFirstMode } from './QuickSortFirstMode'
+import { QuickSortLastMode } from './QuickSortLastMode'
+import { QuickSortRandomMode } from './QuickSortRandomMode'
+import { QuickSortMedianMode } from './QuickSortMedianMode'
 
 export const modeMap: Record<QuickSortModes, NamedExoticComponent> =
   Object.freeze({
