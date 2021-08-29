@@ -1,6 +1,11 @@
 import { FC, memo } from 'react'
 import { Text, Button } from '@chakra-ui/react'
-import { useAppSelector, useAppDispatch, useCustomColors } from 'app/hooks'
+import {
+  useAppSelector,
+  useAppDispatch,
+  useCustomColors,
+  useIsSmallScreen,
+} from 'app/hooks'
 import { ALGOS } from 'app/const'
 import { selectSelectedAlgo } from 'app/selectors'
 import { startCase } from 'lodash'
@@ -11,7 +16,8 @@ const keys = Object.keys(ALGOS)
 const AlgorithmSelector: FC = () => {
   const dispatch = useAppDispatch()
   const selected: ALGOS | null = useAppSelector(selectSelectedAlgo)
-  const { mediumRedViolet } = useCustomColors()
+  const { blueMarguerite } = useCustomColors()
+  const isSmallScreen = useIsSmallScreen()
 
   return (
     <section>
@@ -21,10 +27,10 @@ const AlgorithmSelector: FC = () => {
           size="sm"
           disabled={selected === algo}
           colorScheme="purple"
-          borderTopWidth={selected === algo ? 5 : 0}
-          borderBottomWidth={selected === algo ? 0 : 5}
+          borderTopWidth={selected === algo ? (isSmallScreen ? 2 : 5) : 0}
+          borderBottomWidth={selected === algo ? 0 : isSmallScreen ? 2 : 5}
           borderStyle="solid"
-          borderColor={mediumRedViolet}
+          borderColor={blueMarguerite}
           borderTopStyle="solid"
           w={['25%', '25%', '25%', '25%']}
           h={10}
