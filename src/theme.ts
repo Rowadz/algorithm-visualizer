@@ -11,9 +11,9 @@ const theme: Theme = extendTheme({
   colors: {
     saltBox: '#705E78',
     mulberry: '#BF4594',
-    persimmon: '#FF665A',
+    persimmon: '#553c9a',
     tidal: '#F3FEB0',
-    mediumRedViolet: '#C82C8D',
+    blueMarguerite: '#FFD432',
   } as AppColors,
 })
 
