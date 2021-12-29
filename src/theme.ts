@@ -14,6 +14,8 @@ const theme: Theme = extendTheme({
     persimmon: '#553c9a',
     tidal: '#F3FEB0',
     blueMarguerite: '#FFD432',
+    valentino: '#8C3B70',
+    perano: '#A2D4F2'
   } as AppColors,
 })
 

@@ -1,4 +1,5 @@
 import { DEFAULT_STEP_TIME } from 'app/const'
+import { sleep } from 'app/helpers'
 import { produce, original } from 'immer'
 import { TreeState } from './types'
 
@@ -608,8 +609,5 @@ export const mergeSort = async (
     })
   )
 }
-
-const sleep = (stepSpeed: number = DEFAULT_STEP_TIME): Promise<void> =>
-  new Promise<void>((res) => setTimeout(res, stepSpeed))
 
 const createName = (arr: Array<number>): string => `[${arr.toString()}]`
