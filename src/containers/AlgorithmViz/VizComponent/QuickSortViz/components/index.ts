@@ -1,5 +1,2 @@
 export { default as ModeSelector } from './ModeSelector'
-export * from './QuickSortFirstMode'
-export * from './QuickSortLastMode'
 export * from './QuickSortRandomMode'
-export * from './QuickSortMedianMode'
