@@ -40,7 +40,6 @@ const QuickSortFirstMode: FC = () => {
     setStarted(true)
     const copy = [...array]
     await quickSortRandomMode(copy, setPivot, setArray, setIndexesObj)
-    console.log({ copy })
     setStarted(false)
     setPivot(null)
     setIndexesObj({})
