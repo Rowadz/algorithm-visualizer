@@ -1,6 +1,6 @@
 # Algorithm Visualizer
 
-link => https://mohammedal-rowad.github.io/algorithm-visualizer/
+link => https://rowadz.github.io/algorithm-visualizer/
 
 // TODO
 
