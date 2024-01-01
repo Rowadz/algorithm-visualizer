@@ -6,6 +6,7 @@ import {
   MergeSortViz,
   insertionSort,
   QuickSortViz,
+  HeapSortViz,
 } from './VizComponent'
 
 const map: Record<string, NamedExoticComponent> = Object.freeze({
@@ -14,6 +15,7 @@ const map: Record<string, NamedExoticComponent> = Object.freeze({
   [ALGOS.MERGE_SORT]: MergeSortViz,
   [ALGOS.INSERTION_SORT]: insertionSort,
   [ALGOS.QUICK_SORT]: QuickSortViz,
+  [ALGOS.HEAP_SORT]: HeapSortViz,
 })
 
 export default map
